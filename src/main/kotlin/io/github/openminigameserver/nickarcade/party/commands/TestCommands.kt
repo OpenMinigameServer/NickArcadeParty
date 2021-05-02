@@ -5,6 +5,7 @@ import cloud.commandframework.annotations.CommandMethod
 import io.github.openminigameserver.hypixelapi.models.HypixelPackageRank
 import io.github.openminigameserver.nickarcade.core.data.sender.player.ArcadePlayer
 import io.github.openminigameserver.nickarcade.party.model.MemberRole
+import io.github.openminigameserver.nickarcade.party.model.PartySettings
 import io.github.openminigameserver.nickarcade.party.model.getCurrentParty
 import io.github.openminigameserver.nickarcade.party.model.getOrCreateParty
 import io.github.openminigameserver.nickarcade.plugin.helper.commands.RequiredRank
@@ -15,7 +16,7 @@ object TestCommands {
     @CommandDescription("Create an empty party for debugging issues.")
     fun createDebugParty(sender: ArcadePlayer) {
         sender.getCurrentParty()?.disband()
-        sender.getOrCreateParty()
+        sender.getOrCreateParty().settings.setPropertyAndNotify(sender, PartySettings::developerMode, true)
     }
 
     @RequiredRank(HypixelPackageRank.ADMIN)

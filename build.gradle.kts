@@ -5,5 +5,5 @@ plugins {
 nickarcade {
     name = "Party"
 
-    depends("Chat")
+    depends("Display", "Chat")
 }

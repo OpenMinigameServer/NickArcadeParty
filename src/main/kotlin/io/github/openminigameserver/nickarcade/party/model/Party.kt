@@ -236,6 +236,7 @@ data class Party(
     }
 
     fun disband() {
+        PartyManager.removeParty(id)
         if (totalMembersCount == 0) return
         membersList.toList().forEach {
             removeMember(it.player)
