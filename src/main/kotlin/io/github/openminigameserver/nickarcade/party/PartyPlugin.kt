@@ -1,6 +1,7 @@
 package io.github.openminigameserver.nickarcade.party
 
 import io.github.nickacpt.nickarcade.commands.PartyCommands
+import io.github.openminigameserver.nickarcade.chat.ChatChannelsManager
 import io.github.openminigameserver.nickarcade.core.commandAnnotationParser
 import io.github.openminigameserver.nickarcade.core.commandManager
 import io.github.openminigameserver.nickarcade.core.manager.PlayerDataManager
@@ -8,6 +9,7 @@ import io.github.openminigameserver.nickarcade.core.separator
 import io.github.openminigameserver.nickarcade.display.displayOverrides
 import io.github.openminigameserver.nickarcade.display.managers.ProfilesManager
 import io.github.openminigameserver.nickarcade.display.nick.RandomNickGenerator
+import io.github.openminigameserver.nickarcade.party.chat.PartyChatChannel
 import io.github.openminigameserver.nickarcade.party.commands.TestCommands
 import io.github.openminigameserver.nickarcade.party.events.PartyPlayerLeaveEvent
 import io.github.openminigameserver.nickarcade.party.events.PartySettingChangedEvent
@@ -21,6 +23,7 @@ import io.github.openminigameserver.nickarcade.display.commands.TestCommands as 
 
 class PartyPlugin : JavaPlugin() {
     override fun onEnable() {
+        ChatChannelsManager.registerChannel(PartyChatChannel)
         commandAnnotationParser.parse(PartyCommands)
         commandAnnotationParser.parse(TestCommands)
         PartyCommands.registerPartySettings(commandManager)
