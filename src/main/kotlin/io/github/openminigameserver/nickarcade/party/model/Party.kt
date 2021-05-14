@@ -55,7 +55,7 @@ data class Party(
     }
 
     val totalMembersCount
-        get() = members.count()
+        get() = members.filterNot { it.value.role <= MemberRole.PENDING_INVITE }.count()
 
     fun hasPendingInvite(player: ArcadePlayer): Boolean {
         return getPlayerRole(player) == MemberRole.PENDING_INVITE
