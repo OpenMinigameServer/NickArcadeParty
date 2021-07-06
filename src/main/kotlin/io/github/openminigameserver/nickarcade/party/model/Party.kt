@@ -16,9 +16,9 @@ import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.format.NamedTextColor.*
 import java.util.*
-import kotlin.time.minutes
+import kotlin.time.Duration
 
-val partyExpiryTime = 1.minutes
+val partyExpiryTime = Duration.minutes(1)
 
 data class Party(
     private val members: MutableMap<UUID, PartyMember> = mutableMapOf()
@@ -141,7 +141,7 @@ data class Party(
             append(text(" invited ", YELLOW))
             append(text(target.getChatName(true)))
             append(text(" to the party! They have ", YELLOW))
-            append(text(partyExpiryTime.inSeconds.toInt(), RED))
+            append(text(partyExpiryTime.inWholeSeconds, RED))
             append(text(" seconds to accept.", YELLOW))
         })
 
@@ -152,7 +152,7 @@ data class Party(
             append(newline())
             append(text {
                 it.append(text("You have ", YELLOW))
-                it.append(text(partyExpiryTime.inSeconds.toInt(), RED))
+                it.append(text(partyExpiryTime.inWholeSeconds, RED))
                 it.append(text(" seconds to accept. ", YELLOW))
                 it.append(text("Click here to join!", GOLD))
             })
